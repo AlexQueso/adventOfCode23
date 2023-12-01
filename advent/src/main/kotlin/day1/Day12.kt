@@ -1,7 +1,5 @@
 package day1
 
-import utils.getFileFromFileName
-
 const val ONE = "one"
 const val TWO = "two"
 const val THREE = "three"
@@ -20,25 +18,8 @@ fun main() {
 
 fun calculateCalibrationValuesSumWithSpelledDigits(): Int {
     var calibrationValuesSum = 0
-    getFileFromFileName(INPUT_URL).forEachLine {
-        calibrationValuesSum += (calculateCalibrationValueWithSpelledDigits(it))
+    getCalibrationDocument().forEachLine {
+        calibrationValuesSum += Line(it).retrieveCalibrationValueWithSpelledDigits()
     }
     return calibrationValuesSum
-}
-
-fun calculateCalibrationValueWithSpelledDigits(textLine: String): Int {
-    val spelledDigitsTextLine = switchSpelledDigitsWithActualDigits(textLine)
-    return getFirstDigit(spelledDigitsTextLine) * 10 + getLastDigit(spelledDigitsTextLine)
-}
-
-fun switchSpelledDigitsWithActualDigits(textLine: String): String {
-    var updatedLine = textLine.replace(ONE, "o1ne")
-    updatedLine = updatedLine.replace(TWO, "t2wo")
-    updatedLine = updatedLine.replace(THREE, "thr3ee")
-    updatedLine = updatedLine.replace(FOUR, "fo4ur")
-    updatedLine = updatedLine.replace(FIVE, "fi5ve")
-    updatedLine = updatedLine.replace(SIX, "si6x")
-    updatedLine = updatedLine.replace(SEVEN, "se7ven")
-    updatedLine = updatedLine.replace(EIGHT, "ei8ght")
-    return updatedLine.replace(NINE, "n9ine")
 }

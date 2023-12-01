@@ -10,26 +10,9 @@ fun main() {
 
 fun calculateCalibrationValuesSum(): Int {
     var calibrationValuesSum = 0
-    getFileFromFileName(INPUT_URL).forEachLine {
-        calibrationValuesSum += (calculateCalibrationValue(it))
+    getCalibrationDocument().forEachLine {
+        calibrationValuesSum += Line(it).retrieveCalibrationValue()
     }
     return calibrationValuesSum
 }
-
-fun calculateCalibrationValue(textLine: String): Int {
-    return getFirstDigit(textLine) * 10 + getLastDigit(textLine)
-}
-
-fun getFirstDigit(line: String): Int {
-    line.toCharArray().forEach {
-        if (it.isDigit()) {
-            return it.digitToInt()
-        }
-    }
-    throw NoDigitInLineFoundException("")
-}
-
-fun getLastDigit(line: String): Int {
-    val reversedLine = line.reversed()
-    return getFirstDigit(reversedLine)
-}
+fun getCalibrationDocument() = getFileFromFileName(INPUT_URL)
