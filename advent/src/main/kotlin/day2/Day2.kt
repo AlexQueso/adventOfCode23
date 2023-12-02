@@ -16,6 +16,7 @@ fun main() {
 
 fun calculateSumOfGamePowers() =
     createMatchFromRecord().sumOfGamePowers()
+
 fun calculateSumOfPossibleGameIds() =
     createMatchFromRecord().sumOfPossibleGamesIds()
 

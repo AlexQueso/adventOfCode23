@@ -19,16 +19,21 @@ class Game(
         return true
     }
 
-    fun power() = minimumColourCubes(Subset::red) * minimumColourCubes(Subset::red) * minimumColourCubes(Subset::red)
+    fun power(): Int {
+        return minimumNumberCubesByColour(Subset::red) * minimumNumberCubesByColour(Subset::blue) * minimumNumberCubesByColour(
+            Subset::green
+        )
+    }
 
-    private fun minimumColourCubes(getter: KMutableProperty1<Subset, Int>): Int {
-        var minimumRedCubes = 0
+    private fun minimumNumberCubesByColour(colourGetter: KMutableProperty1<Subset, Int>): Int {
+        var minimumCubes = 0
         subsets.forEach {
-            if (getter.invoke(it) > minimumRedCubes){
-                minimumRedCubes = getter.invoke(it)
+            val numberOfCubes = colourGetter.invoke(it)
+            if (numberOfCubes > minimumCubes) {
+                minimumCubes = numberOfCubes
             }
         }
-        return minimumRedCubes
+        return minimumCubes
     }
 }
 
@@ -37,8 +42,6 @@ class Subset {
     var blue: Int = 0
     var green: Int = 0
 
-    fun isImpossible(): Boolean {
-        return red > MAX_RED || blue > MAX_BLUE || green > MAX_GREEN
-    }
+    fun isImpossible() = red > MAX_RED || blue > MAX_BLUE || green > MAX_GREEN
 
 }
