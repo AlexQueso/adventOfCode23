@@ -10,8 +10,8 @@ const val BLUE = "blue"
 const val GREEN = "green"
 
 fun main() {
-    println("problema 1: " + calculateSumOfPossibleGameIds())
-    println("problema 2: " + calculateSumOfGamePowers())
+    println("part 1: " + calculateSumOfPossibleGameIds())
+    println("part 2: " + calculateSumOfGamePowers())
 }
 
 fun calculateSumOfGamePowers() =

@@ -4,8 +4,8 @@ import utils.getFileFromFileName
 import utils.getInputFileFromDayNumber
 
 fun main() {
-    println("1: " + calculateCalibrationValuesSum())
-    println("2: " + calculateCalibrationValuesSumWithSpelledDigits())
+    println("part 1: " + calculateCalibrationValuesSum())
+    println("part 2: " + calculateCalibrationValuesSumWithSpelledDigits())
 }
 
 fun calculateCalibrationValuesSum(): Int {
