@@ -64,8 +64,6 @@ class Almanac (
         }
         return minimum
     }
-
-
 }
 
 
