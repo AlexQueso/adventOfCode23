@@ -9,9 +9,7 @@ const val LIGHT = "light"
 const val TEMPERATURE = "temperature"
 const val HUMIDITY = "humidity"
 
-class Almanac (
-
-) {
+class Almanac {
     val seeds = mutableListOf<Long>()
     val seedToSoilMap = Map()
     val soilToFertilizer = Map()
@@ -29,23 +27,23 @@ class Almanac (
         return minimum(seedLocations)
     }
 
-    private fun getLocationValue(seed: Long) : Long {
+    private fun getLocationValue(seed: Long): Long {
         val soil = seedToSoilMap.map(seed)
         val fertilizer = soilToFertilizer.map(soil)
         val water = fertilizerToWater.map(fertilizer)
         val light = waterToLight.map(water)
         val temperature = lightToTemperature.map(light)
         val humidity = temperatureToHumidity.map(temperature)
-        return  humidityToLocation.map(humidity)
+        return humidityToLocation.map(humidity)
     }
 
     fun lowestLocationWithSeedRange(): Long {
         var seedRangeIndex = 0;
         var minimum = Long.MAX_VALUE
         while (seedRangeIndex < seeds.size) {
-            for (seedNumber in seeds[seedRangeIndex] until seeds[seedRangeIndex] + seeds[seedRangeIndex+1]){
+            for (seedNumber in seeds[seedRangeIndex] until seeds[seedRangeIndex] + seeds[seedRangeIndex + 1]) {
                 val location = getLocationValue(seedNumber)
-                if (location<minimum){
+                if (location < minimum) {
                     minimum = location
                     println("new minimum location: $minimum")
                 }
@@ -58,7 +56,7 @@ class Almanac (
     private fun minimum(list: List<Long>): Long {
         var minimum = Long.MAX_VALUE
         list.forEach {
-            if (it < minimum){
+            if (it < minimum) {
                 minimum = it
             }
         }
@@ -75,11 +73,11 @@ class AlmanacRecord(private val record: List<String>) {
         return almanac
     }
 
-    private fun setSeeds(){
+    private fun setSeeds() {
         record[0]
             .replace("seeds: ", "")
             .split(" ")
-            .forEach{
+            .forEach {
                 almanac.seeds.add(it.toLong())
             }
     }
@@ -94,17 +92,17 @@ class AlmanacRecord(private val record: List<String>) {
         setMap(HUMIDITY, almanac.humidityToLocation)
     }
 
-    private fun setMap(mapType: String, map: Map){
+    private fun setMap(mapType: String, map: Map) {
         for (index in record.indices) {
             if (record[index].startsWith(mapType)) {
-                addElementsToMap(index+1, map)
+                addElementsToMap(index + 1, map)
             }
         }
     }
 
     private fun addElementsToMap(index: Int, map: Map) {
         var mapIndex = index
-        while (mapIndex < record.size && record[mapIndex] != "" ) {
+        while (mapIndex < record.size && record[mapIndex] != "") {
             map.addRange(record[mapIndex])
             mapIndex++
         }
