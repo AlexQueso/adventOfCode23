@@ -1,6 +1,5 @@
 package day4
 
-import utils.getExample1FileFromDayNumber
 import utils.getInputFileFromDayNumber
 
 const val DAY_NUMBER = 4
@@ -18,26 +17,7 @@ fun calculateWinningPoints(): Int {
 }
 
 fun getScratchCardsAmount(): Int {
-    val scratchCards = getOriginalCardList()
-    val originalScratchCardList = getOriginalCardList()
-    var index = 0
-    while (index < scratchCards.size) {
-        val cardMatchingNumbers = scratchCards[index].getCardMatchingNumbers()
-        val cardId = scratchCards[index].id
-        for (i in cardId until cardId + cardMatchingNumbers) {
-            scratchCards.add(originalScratchCardList[i].copy())
-        }
-        index ++
-    }
-    return scratchCards.size
-}
-
-fun getOriginalCardList(): MutableList<Card> {
-    val list = mutableListOf<Card>()
-    getCardsInput().forEachLine {
-        list.add(CardRecord(it).getCard())
-    }
-    return list
+    return CardGame(getCardsInput()).scratchCardsAmount()
 }
 
 fun getCardsInput() = getInputFileFromDayNumber(DAY_NUMBER)
