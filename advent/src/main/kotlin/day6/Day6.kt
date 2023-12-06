@@ -12,10 +12,10 @@ fun main() {
     println("part 2: " + numberOfWinningPossibilitiesNoKerning(getInputFileFromDayNumber(DAY_NUMBER)))
 }
 
-fun numberOfWinningPossibilitiesNoKerning(input: File): Long {
-    return CompetitionRecord(input.readLines()).getCompetitionNoKerning().numberOfWinningPossibilities()
-}
+fun numberOfWinningPossibilitiesNoKerning(input: File) = CompetitionRecord(input.readLines())
+        .getCompetitionNoKerning()
+        .numberOfWinningPossibilities()
 
-fun numberOfWinningPossibilities(input: File): Long {
-    return CompetitionRecord(input.readLines()).getCompetition().numberOfWinningPossibilities()
-}
+fun numberOfWinningPossibilities(input: File) = CompetitionRecord(input.readLines())
+    .getCompetition()
+    .numberOfWinningPossibilities()
