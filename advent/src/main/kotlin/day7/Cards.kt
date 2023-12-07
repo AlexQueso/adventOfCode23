@@ -1,5 +1,13 @@
 package day7
 
+const val FIVE_OF_A_KIND = 6
+const val FOUR_OF_A_KIND = 5
+const val FULL_HOUSE = 4
+const val THREE_OF_A_KIND = 3
+const val TWO_PAIR = 2
+const val ONE_PAIR = 1
+const val HIGH_CARD = 0
+
 class Cards (private val cardsLine: String) {
 
     val cardList: List<Int> = getCardIntList()
@@ -17,7 +25,7 @@ class Cards (private val cardsLine: String) {
 
     private fun translateCardsIntoValues(input: String) = when (input){
         "T" -> 10
-        "J" -> 11
+        "J" -> 1
         "Q" -> 12
         "K" -> 13
         "A" -> 14
@@ -104,7 +112,32 @@ class Cards (private val cardsLine: String) {
                 map[it] = 1
             }
         }
+        updateMapWithJokers(map)
         return map
+    }
+
+    private fun updateMapWithJokers(map: MutableMap<Int, Int>) {
+        val amountOfJokers = map[1] ?: 0
+        if (amountOfJokers in 1..4) {
+            map.remove(1)
+            val highestAmount = getHighestAmount(map)
+            map.forEach {
+                if (it.value == highestAmount){
+                    map.replace(it.key, it.value + amountOfJokers)
+                    return
+                }
+            }
+        }
+    }
+
+    private fun getHighestAmount(map: MutableMap<Int, Int>) : Int {
+        var amount = 1
+        map.values.forEach {
+            if (it>amount){
+                amount = it
+            }
+        }
+        return amount
     }
 
 }
