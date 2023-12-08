@@ -11,10 +11,10 @@ fun printFileLineByLine(fileName: String) = File(fileName).forEachLine { println
 
 fun getFileFromFileName(fileName: String) = File(fileName)
 
-fun getInputFileFromDayNumber(dayNumber: Int) =
+fun getInputFileFromDayNumber(dayNumber: String) =
     getFileFromFileName(INPUT_URL_BEGINNING + dayNumber + INPUT_URL_END)
 
-fun getExample1FileFromDayNumber(dayNumber: Int) =
+fun getExample1FileFromDayNumber(dayNumber: String) =
     getFileFromFileName(INPUT_URL_BEGINNING + dayNumber + EXAMPLE1_URL_END)
 
 
