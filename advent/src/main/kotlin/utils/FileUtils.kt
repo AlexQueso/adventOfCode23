@@ -17,6 +17,5 @@ fun getInputFileFromDayNumber(dayNumber: String) =
 fun getExample1FileFromDayNumber(dayNumber: String) =
     getFileFromFileName(INPUT_URL_BEGINNING + dayNumber + EXAMPLE1_URL_END)
 
-
-fun getExample2FileFromDayNumber(dayNumber: Int) =
+fun getExample2FileFromDayNumber(dayNumber: String) =
     getFileFromFileName(INPUT_URL_BEGINNING + dayNumber + EXAMPLE2_URL_END)
