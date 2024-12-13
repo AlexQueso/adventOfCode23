@@ -30,7 +30,7 @@ class Locations(private val locationList: List<MutableList<Int>>) {
 }
 
 class LocationRecord(private val record: List<String>) {
-    
+
     private val locations = mutableListOf(mutableListOf<Int>(), mutableListOf())
 
     fun getLocations(): Locations {
