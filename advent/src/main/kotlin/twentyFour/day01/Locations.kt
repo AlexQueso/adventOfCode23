@@ -1,6 +1,8 @@
 package twentyFour.day01
 
-class Locations(val locationList: List<MutableList<Int>>) {
+import kotlin.math.abs
+
+class Locations(private val locationList: List<MutableList<Int>>) {
 
     private val similarities = mutableMapOf<Int, Int>()
 
@@ -13,7 +15,7 @@ class Locations(val locationList: List<MutableList<Int>>) {
     }
 
     private fun getPairDistance(location1: Int, location2: Int): Int {
-        return Math.abs(location1 - location2)
+        return abs(location1 - location2)
     }
 
     fun totalSimilarities(): Int {
@@ -28,8 +30,7 @@ class Locations(val locationList: List<MutableList<Int>>) {
 }
 
 class LocationRecord(private val record: List<String>) {
-
-
+    
     private val locations = mutableListOf(mutableListOf<Int>(), mutableListOf())
 
     fun getLocations(): Locations {
